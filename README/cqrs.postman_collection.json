@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "fb2da307-0201-4f12-8de0-2428afa37712",
+		"name": "cqrs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DeviceControl 추가 이벤트 처리",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/sourcing/controls?deviceCd=TST_TEST_DVC_07&resource=TESTRSC7&attribute=TESTATTR7&value=TESTVAL7_1&nodeCd=TST&deviceModelCd=DVC&deviceTypeCd=TEST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sourcing",
+						"controls"
+					],
+					"query": [
+						{
+							"key": "deviceCd",
+							"value": "TST_TEST_DVC_07"
+						},
+						{
+							"key": "resource",
+							"value": "TESTRSC7"
+						},
+						{
+							"key": "attribute",
+							"value": "TESTATTR7"
+						},
+						{
+							"key": "value",
+							"value": "TESTVAL7_1"
+						},
+						{
+							"key": "nodeCd",
+							"value": "TST"
+						},
+						{
+							"key": "deviceModelCd",
+							"value": "DVC"
+						},
+						{
+							"key": "deviceTypeCd",
+							"value": "TEST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "kafka consumer wakeup",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8900/kafka",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8900",
+					"path": [
+						"kafka"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeviceContorl 가져오기",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/device/control/SEV-APF-SEC-000001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"device",
+						"control",
+						"SEV-APF-SEC-000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeviceControl 제어",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"service\": {\r\n        \"category\": \"device\",\r\n        \"function\": \"control\",\r\n        \"state\": \"653034378\"\r\n    },\r\n    \"device\": {\r\n        \"devicecd\": \"SEV-APF-SEC-000001\",\r\n        \"partnerdevicecd\": \"EF24EFAD-D25C-4699-AB26-000000000SIM\",\r\n        \"nodecd\": \"SEC_CDEV\"\r\n    },\r\n    \"auth\":{\r\n        \"accesstokenvalu\": \"CUyKX2QXP3sxfyP8t52LxMIBF\",\r\n        \"partneruserid\": \"nv8wsqw4bg\"\r\n    },\r\n    \"operation\":{\r\n        \"resource\": \"Operation\",\r\n        \"attribute\": \"power\",\r\n        \"value\": \"off\"\r\n    }\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/device/control",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"device",
+						"control"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ElevtorControl 요청",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"service\": {\r\n        \"category\": \"home\",\r\n        \"operation\": \"elevator\",\r\n        \"state\": \"653034378\"\r\n    },\r\n    \"auth\": {\r\n        \"accesstokenvalu\": \" QVVUT0VWRVJfUEhEQ0hUQ1NFRVAxX0wxMTgzMDUw\"\r\n    },\r\n    \"condition\": {\r\n        \"partnerhouseholdcd\": \"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==\"\r\n    }\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/elevator/control",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"elevator",
+						"control"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ElevatorControl 가져오기",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/elevator/control/PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"elevator",
+						"control",
+						"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw=="
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HomenetControl 요청",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"information_visitor\": {\r\n\t\t\"partnerid\": \"PHDCHTCGGGY1\",\r\n\t\t\"partnerkeyvalu\": \"O2c3P0C73H44Dg06\",\r\n\t\t\"partnerhouseholdcd\": \"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==\",\r\n\t\t\"notificationtype\": \"event_report\",\r\n\t\t\"category\": \"inforamtion_visitor\",\r\n\t\t\"eventtime\": \"20190517135935\",\r\n\t\t\"home_id\": \"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==\",\r\n\t\t\"index_no\": \"51287\",\r\n\t\t\"location\": \"01\"\r\n\t}\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/homenet/control",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"homenet",
+						"control"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VisitControl 가져오기",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/homenet/control/information_visitor/PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"homenet",
+						"control",
+						"information_visitor",
+						"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw=="
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ParkingContorl 가져오기",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/JavaCQRS-0.0.1-SNAPSHOT/homenet/control/information_parking/PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw==",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JavaCQRS-0.0.1-SNAPSHOT",
+						"homenet",
+						"control",
+						"information_parking",
+						"PHDCHTCGGHS1_UEhEQ0hUQ0dHSFMxXzIwMzVfMjIwMV8yMDE5MDEwOTEzMzYzMw=="
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "56c41c57-cf32-4c15-9f07-319f043c0397",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "35611d7a-9914-490e-9b99-8a7fe97c9793",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

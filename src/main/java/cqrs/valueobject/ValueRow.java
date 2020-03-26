@@ -139,7 +139,7 @@ public class ValueRow implements Map<String, Object> {
   }
 
   public Object put(String key, Object value) {
-    return this.put(key, value);
+    return this.row.put(key, value);
   }
 
   public Object remove(Object key) {

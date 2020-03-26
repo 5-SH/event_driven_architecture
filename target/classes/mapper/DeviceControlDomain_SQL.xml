@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cqrs.device.control.repository.domain.DeviceControlDomainRepository">
+  <insert id="savedevicecontrolstatus">
+  <![CDATA[
+    INSERT INTO tb_device_status
+                (node_cd, device_model_cd, device_type_cd, device_cd, resource, attribute, value)
+         VALUES (#{nodeCd}, #{deviceModelCd}, #{deviceTypeCd}, #{deviceCd}, #{resource}, #{attribute}, #{value})
+    ON DUPLICATE KEY UPDATE
+  ]]>
+    <trim suffixOverrides=",">
+      <if test="nodeCd != null">
+        node_cd = #{nodeCd},
+      </if>
+      <if test="deviceModelCd != null">
+        device_model_cd = #{deviceModelCd},
+      </if>
+      <if test="deviceTypeCd != null">
+        device_type_cd = #{deviceTypeCd},
+      </if>
+      <if test="resource != null">
+        resource = #{resource},
+      </if>
+      <if test="attribute != null">
+        attribute = #{attribute},
+      </if>
+      <if test="value != null">
+        value = #{value},
+      </if>
+    </trim>
+  </insert>  
+</mapper>

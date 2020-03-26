@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cqrs.device.control.repository.event.ControlEventRepository">
+	<insert id="savecontrolevent">
+    <![CDATA[
+        INSERT INTO ${table}
+                    (identifier, type, version, payload, date)
+             VALUES (#{identifier}, #{type}, #{version}, #{payload}, #{date})
+    ]]>
+	</insert>
+
+	<select id="findwithidentifierafterversion" resultType="cqrs.control.event.data.ControlEventData">
+	<![CDATA[
+        SELECT identifier, type, version, payload, date
+          FROM ${table}
+         WHERE identifier = #{identifier}
+           AND version >= #{version}
+    ]]>
+	</select>
+
+	<select id="findcontrolevent" resultType="cqrs.control.event.data.ControlEventData">
+	<![CDATA[
+        SELECT identifier, type, version, payload, date
+          FROM ${table}
+         WHERE identifier = #{identifier}
+      ORDER BY seq ASC
+    ]]>
+	</select>
+
+</mapper>

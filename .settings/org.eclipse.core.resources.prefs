@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/cqrs/control/domain/DeviceControl.java=UTF-8
+encoding//src/main/java/cqrs/control/event/DeviceControlledEvent.java=UTF-8
+encoding//src/main/java/cqrs/control/event/ElevatorCalledEvent.java=UTF-8
+encoding//src/main/java/cqrs/control/event/VisitedEvent.java=UTF-8
+encoding//src/main/java/cqrs/core/snapshot/Snapshot.java=UTF-8
+encoding//src/test/java=UTF-8
